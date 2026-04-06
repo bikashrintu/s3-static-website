@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance - Teks Academy</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .time {
+            font-size: 20px;
+            font-weight: bold;
+            color: #F59E0B;
+            margin: 10px 0;
+        }
+
+        .countdown {
+            font-size: 30px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 10px 20px;
+            background: #F59E0B;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🚧 Website Under Development</h1>
+    <p>Our website is under maintenance.</p>
+
+    <p>Available Time:</p>
+    <div class="time">9:00 PM – 6:00 AM</div>
+
+    <p>Site will be live in:</p>
+    <div class="countdown" id="countdown">Loading...</div>
+
+    <button class="btn" onclick="location.reload()">Refresh</button>
+</div>
+
+<script>
+    function updateCountdown() {
+        const now = new Date();
+
+        let target = new Date();
+        target.setHours(6, 0, 0, 0); // 6:00 AM
+
+        // If already past 6 AM, set to next day
+        if (now.getHours() >= 6) {
+            target.setDate(target.getDate() + 1);
+        }
+
+        const diff = target - now;
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            `${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
